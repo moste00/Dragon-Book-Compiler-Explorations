@@ -1,0 +1,25 @@
+Algorithm Lexer :
+    input :
+     - str   : Program String
+     - rules : Lexing Rules
+
+    depends on :
+     - match? : A Function that
+                - takes a regex rule and a string
+                - returns true if the rule matches the entire string, false otherwise
+
+    do until str is empty :
+        - find the longest possible:
+            substring = str[0..i]
+          such that:
+            at least 1 rule satisfies match?(rule,substring)
+
+        - if no rules match:
+            output an error token and continue from the next character
+
+        - if multiple rules match:
+            take the first one according to some arbitrary (but fixed) order
+
+        - output a token consisting of the rule name and the matched substring
+
+        - remove that substring from str and repeat
